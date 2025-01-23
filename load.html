@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informações sobre a Equipe - Tokyo App</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            color: #333;
+            overflow-x: hidden;
+        }
+        header {
+            background-color: #ff6f61; /* Cor mais vibrante */
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            animation: fadeIn 1.5s ease-out;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.8rem;
+            animation: slideIn 1s ease-out;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        @keyframes slideIn {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(0); }
+        }
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            opacity: 0;
+            animation: fadeIn 2s ease-out forwards;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 30px;
+            margin: 10px 0;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .button:hover {
+            background-color: #2980b9;
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .section {
+            margin-bottom: 25px;
+            opacity: 0;
+            animation: fadeIn 2s ease-out forwards;
+        }
+        .section h2 {
+            font-size: 1.8rem;
+            color: #ff6f61;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .team-member {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            padding: 8px 0;
+            transition: transform 0.3s ease, color 0.3s ease;
+            cursor: pointer;
+        }
+        .team-member:hover {
+            transform: scale(1.1);
+            color: #3498db;
+        }
+        footer {
+            text-align: center;
+            padding: 15px 0;
+            background-color: #2c3e50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+    <h1>Tokyo App</h1>
+</header>
+
+<div class="container" id="main-content">
+    <p>Olá! Eu sou o Kauam, o programador do Tokyo App. Se você está aqui, provavelmente veio de algum link do TikTok ou YouTube. Agradeço muito por sua visita! Se deseja instalar o nosso aplicativo, basta clicar no botão abaixo:</p>
+
+    <a href="https://www.mediafire.com/file/d9nh2cyarfdvd5f/Tokyo.apk/file" class="button" target="_blank">Baixar Tokyo App</a>
+
+    <p>Para garantir a segurança, recomendamos que o aplicativo seja baixado apenas através deste link ou do nosso Discord. O Tokyo App é open-source, o que garante total transparência em sua aplicação.</p>
+
+    <div class="section">
+        <h2>Como o Tokyo App é feito</h2>
+        <p>O Tokyo App foi desenvolvido utilizando HTML e CSS. Não coletamos dados sensíveis de nossos usuários, e nenhuma informação é compartilhada com plataformas de terceiros.</p>
+        <p>Em nosso compromisso com a privacidade, garantimos que a aplicação não usa seus dados para publicidade ou outros fins comerciais.</p>
+    </div>
+
+    <div class="section">
+        <h2>Alterações e Edições</h2>
+        <p>Se você deseja estudar ou modificar o código da aplicação, entre em contato com nossa equipe. Caso queira realizar modificações no aplicativo oficial ou obter um certificado de edição, é necessário seguir as diretrizes estabelecidas. Modificações para uso pessoal ou distribuição não serão permitidas, e apenas APIs gratuitas ou não pertencentes a nós poderão ser utilizadas.</p>
+    </div>
+
+    <div class="section">
+        <h2>Membros da Equipe</h2>
+        <div class="team-member"><strong>Liandra</strong> - Designer</div>
+        <div class="team-member"><strong>Revison</strong> - Testador Oficial</div>
+        <p>Agradecemos à nossa incrível equipe pelo excelente trabalho e contribuição para o desenvolvimento do Tokyo App.</p>
+    </div>
+
+    <div class="section">
+        <h2>Receba Atualizações</h2>
+        <p>Para ficar por dentro de todas as novidades sobre o Tokyo App, entre no nosso Discord clicando no botão abaixo:</p>
+        <a href="https://discord.gg/eTEb4gzbdz" class="button" target="_blank">Acessar Discord</a>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2025 Tokyo App. Todos os direitos reservados.</p>
+</footer>
+
+    <script>
+        // Animações dinâmicas para as seções
+        const sections = document.querySelectorAll('.section');
+        const options = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        function handleIntersect(entries, observer) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.classList.add('fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }
+
+        const observer = new IntersectionObserver(handleIntersect, options);
+        sections.forEach(section => {
+            section.style.opacity = 0;
+            observer.observe(section);
+        });
+
+        // Animação para o conteúdo principal
+        const content = document.getElementById('main-content');
+        window.addEventListener('load', () => {
+            content.style.animation = 'fadeIn 2s ease-out forwards';
+        });
+    </script>
+
+</body>
+</html>
